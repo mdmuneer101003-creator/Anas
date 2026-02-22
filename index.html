@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollabNest · for small creators</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafbfc;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: #0f172a;
+        }
+
+        .logo i {
+            color: #3b82f6;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .btn-primary {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 12px rgba(59,130,246,0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline:hover {
+            background-color: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        /* hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 40px 0 60px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1 1 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            background: linear-gradient(145deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 540px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 14px 32px;
+            font-size: 1rem;
+        }
+
+        .hero-image {
+            flex: 1 1 400px;
+            background: linear-gradient(145deg, #dbeafe, #ede9fe);
+            border-radius: 48px 48px 48px 48px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+        }
+
+        .hero-image i {
+            font-size: 10rem;
+            color: #3b82f6;
+            opacity: 0.8;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+        }
+
+        /* featured badges */
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 32px;
+            justify-content: center;
+            margin: 30px 0 20px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .badge-row i {
+            color: #3b82f6;
+            margin-right: 8px;
+        }
+
+        /* section headings */
+        .section-heading {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .section-heading p {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 12px auto 0;
+        }
+
+        /* steps */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+            transition: all 0.25s ease;
+        }
+
+        .step-card:hover {
+            transform: scale(1.02);
+            border-color: #b9d5fd;
+            box-shadow: 0 20px 30px -10px rgba(59,130,246,0.15);
+        }
+
+        .step-icon {
+            background: #eff6ff;
+            width: 72px;
+            height: 72px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2rem;
+            color: #3b82f6;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .step-card p {
+            color: #475569;
+        }
+
+        /* features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 28px;
+            padding: 30px 24px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.2s;
+        }
+
+        .feature-item:hover {
+            border-color: #c7dafc;
+        }
+
+        .feature-icon {
+            background: #eef2ff;
+            width: 56px;
+            height: 56px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #475569;
+        }
+
+        /* categories pills */
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin: 30px 0 20px;
+        }
+
+        .cat-pill {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #334155;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .cat-pill i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+
+        .cat-pill:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .cat-pill:hover i {
+            color: white;
+        }
+
+        /* testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.02);
+        }
+
+        .testimonial-card .profile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(145deg, #3b82f6, #a78bfa);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .profile h5 {
+            font-size: 1.2rem;
+        }
+
+        .profile span {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card p {
+            color: #334155;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .stars i {
+            color: #fbbf24;
+            margin-right: 4px;
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border-radius: 48px;
+            padding: 64px 48px;
+            color: white;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-banner h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-banner p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.85;
+        }
+
+        .cta-banner .btn-primary {
+            background-color: white;
+            color: #0f172a;
+            border: none;
+            font-size: 1.2rem;
+            padding: 16px 48px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.4);
+        }
+
+        .cta-banner .btn-primary:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-3px);
+        }
+
+        /* footer */
+        .footer {
+            border-top: 1px solid #e2e8f0;
+            padding: 40px 0;
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+            color: #475569;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #0f172a;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #64748b;
+            text-decoration: none;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .footer-col a:hover {
+            color: #3b82f6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.3rem;
+            color: #94a3b8;
+        }
+
+        .social-icons i:hover {
+            color: #3b82f6;
+            cursor: default;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 0;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-handshake"></i>
+                <span>CollabNest</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">For creators</a>
+                <a href="#">Discover</a>
+                <a href="#">How it works</a>
+                <a href="#" class="btn btn-outline">Log in</a>
+                <a href="#" class="btn btn-primary">Sign up</a>
+            </div>
+        </nav>
+
+        <!-- hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Where small creators <span>collab oftenly</span> & grow together</h1>
+                <p class="hero-desc">Stop struggling alone. Join CollabNest to partner with fellow YouTubers, TikTokers, and Instagrammers for frequent, meaningful collaborations.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-user-plus" style="margin-right: 8px;"></i>Start collabing</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-compass" style="margin-right: 8px;"></i>Browse collabs</a>
+                </div>
+                <div class="badge-row">
+                    <span><i class="fas fa-check-circle"></i> 5k+ small creators</span>
+                    <span><i class="fas fa-rocket"></i> 200+ collabs weekly</span>
+                    <span><i class="fas fa-globe"></i> all niches</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-users-between-lines"></i>
+                <!-- abstract representation -->
+            </div>
+        </section>
+
+        <!-- how it works (steps) -->
+        <div class="section-heading">
+            <h2>From solo to <span style="color:#3b82f6;">squad</span> in 3 steps</h2>
+            <p>Designed for YouTubers & social media users who want to collab oftenly.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-pen-fancy"></i></div>
+                <h3>1. Create profile</h3>
+                <p>Showcase your channel, stats, niche, and what kind of collabs you're into.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-magnifying-glass"></i></div>
+                <h3>2. Discover matches</h3>
+                <p>Use smart filters to find creators with similar audience size & interests.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon"><i class="fas fa-message"></i></div>
+                <h3>3. Plan & collab</h3>
+                <p>Chat, exchange ideas, and launch joint videos, shoutouts, or live streams.</p>
+            </div>
+        </div>
+
+        <!-- feature highlights -->
+        <div class="section-heading">
+            <h2>Built for frequent collabs</h2>
+            <p>No more cold DMs — we handle the heavy lifting.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-people-arrows"></i></div>
+                <h4>Smart matching</h4>
+                <p>Our algorithm suggests partners based on audience overlap, content style, and goals.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <h4>Collab manager</h4>
+                <p>Track ongoing projects, deadlines, and deliverables — all in one dashboard.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-chart-simple"></i></div>
+                <h4>Audience insights</h4>
+                <p>See estimated reach overlap and demographics before you commit.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-video"></i></div>
+                <h4>Prompts & ideas</h4>
+                <p>Get inspired by collab briefs, from "gaming duo" to "beauty swap".</p>
+            </div>
+        </div>
+
+        <!-- popular categories -->
+        <div style="text-align: center; margin: 40px 0 20px;">
+            <span style="background: #dbeafe; padding: 6px 18px; border-radius: 40px; color:#1e4a8b; font-weight:600;">🍎 trending niches</span>
+        </div>
+        <div class="categories">
+            <span class="cat-pill"><i class="fab fa-youtube"></i> Gaming</span>
+            <span class="cat-pill"><i class="fas fa-paint-brush"></i> Art & craft</span>
+            <span class="cat-pill"><i class="fas fa-laptop"></i> Tech review</span>
+            <span class="cat-pill"><i class="fas fa-dumbbell"></i> Fitness</span>
+            <span class="cat-pill"><i class="fas fa-book-open"></i> Booktube</span>
+            <span class="cat-pill"><i class="fas fa-utensils"></i> Cooking</span>
+            <span class="cat-pill"><i class="fas fa-music"></i> Music</span>
+            <span class="cat-pill"><i class="fas fa-podcast"></i> Podcast</span>
+        </div>
+
+        <!-- testimonials -->
+        <div class="section-heading">
+            <h2>Loved by small but mighty creators</h2>
+            <p>Real stories from the CollabNest community.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="profile">
+                    <div class="profile-avatar">JD</div>
+                    <div>
+                        <h5>Jenna Diaz</h5>
+                        <span>1.2K subs · Beauty</span>
+                    </div>
+                </div>
+                <p>"Found 3 collab partners in my first week! We did a "grwm" collab and all our small channels grew. Finally a place to collab oftenly."</p>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="profile">
+                    <div class="profile-avatar">MK</div>
+                    <div>
+                        <h5>Mike K.</h5>
+                        <span>3.4K subs · Gaming</span>
+                    </div>
+                </div>
+                <p>"My channel grew 40% after a Among Us collab with two other small streamers. The matching tool is insane — we had almost the same audience size."</p>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="profile">
+                    <div class="profile-avatar">SR</div>
+                    <div>
+                        <h5>Sophie R.</h5>
+                        <span>880 followers · BookTok</span>
+                    </div>
+                </div>
+                <p>"As a tiny booktuber it's hard to get noticed. CollabNest connected me with 5 similar creators, we now do monthly reading vlogs together. Love it!"</p>
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+            </div>
+        </div>
+
+        <!-- call to action banner -->
+        <div class="cta-banner">
+            <h2>Ready to collab oftenly?</h2>
+            <p>Join hundreds of small YouTubers & social creators already finding partners every day.</p>
+            <a href="#" class="btn btn-primary"><i class="fas fa-handshake" style="margin-right: 8px;"></i>Create free profile</a>
+            <p style="font-size: 0.9rem; margin-top: 24px; opacity:0.7;">No credit card — just collabs.</p>
+        </div>
+
+        <!-- footer -->
+        <footer class="footer">
+            <div>
+                <div class="footer-logo">
+                    <i class="fas fa-handshake"></i> CollabNest
+                </div>
+                <p style="margin: 12px 0 20px; max-width: 260px;">Small creators collabing oftenly. Built with 💙 for the creator economy.</p>
+                <div class="social-icons">
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-discord"></i>
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <p>Platform</p>
+                    <a href="#">How it works</a>
+                    <a href="#">For YouTubers</a>
+                    <a href="#">For TikTokers</a>
+                    <a href="#">Safety</a>
+                </div>
+                <div class="footer-col">
+                    <p>Resources</p>
+                    <a href="#">Collab ideas</a>
+                    <a href="#">Success stories</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Help center</a>
+                </div>
+                <div class="footer-col">
+                    <p>Company</p>
+                    <a href="#">About</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy</a>
+                </div>
+            </div>
+        </footer>
+        <hr>
+        <p style="text-align: center; color:#94a3b8; padding: 24px 0;">© CollabNest 2025 — where small creators collab oftenly.</p>
+    </div>
+    <!-- subtle hover effect for demo (no JS needed) -->
+</body>
+</html>
